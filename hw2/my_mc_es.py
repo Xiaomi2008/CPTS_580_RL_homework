@@ -5,7 +5,7 @@ import sys
 sys.path.append("../")
 from envs.mdp_gridworld import MDPGridworldEnv
 
-class mydp:
+class myMC:
 	def __init__(self,env):
 		self.env      = env #(act_mode='stochastic')
 		self.reset_val()
@@ -47,15 +47,11 @@ class mydp:
 					R=np.mean(episode_array[i:,1])
 					#R = sum(r1*pow(0.9,i2) for i2,(_1,r1,_2) in enumerate(episode_memory[i:]))
 					#R /=len(episode_memory[i:])
-					#if s ==2 and a  ==3:
-					#	print (R)
-					#R=np.mean(episode_array[i:,1])
 					self.Return[(s,a)].append(R)
 					self.Q_value[(s,a)]=np.mean(self.Return[(s,a)])
 					visited_states[s,a] =1
 					#if s ==2:
 					#	print ( 'U ={} , D ={}, L={}, R={}'.format(self.Q_value[(s,0)],self.Q_value[(s,1)],self.Q_value[(s,2)],self.Q_value[(s,3)]))
-			#print(episode_memory)
 
 			# (c)========== For each s in the episode ============= 
 			states = np.unique(episode_array[:,0])
@@ -104,11 +100,6 @@ class mydp:
 		return action_list
 
 
-	def update_policy(self):
-		for state in range(self.space_n):
-			self.set_policy(state,self.get_max_V_actions(state))
-
-
 	# def show_result(self):
 	# 	print "=============================="
 	# 	print "--------- State value --------"
@@ -139,20 +130,20 @@ class mydp:
 if __name__ == "__main__":
 	print  ("--------------Deterministic action state ------------ ")
 	env = MDPGridworldEnv(act_mode='deterministic')
-	A =mydp(env)
+	A =myMC(env)
 	A.monte_carlo_ES()
 	A.show_policy()
 	print(" ")
 	
 	print ("--------------Stochastic action state  with  'High' randomness ---------------- ")
 	env2 = MDPGridworldEnv(act_mode='stochastic',random_prob ='high')
-	B =mydp(env2)
+	B =myMC(env2)
 	B.monte_carlo_ES()
 	B.show_policy()
 
 	print (" ")
 	print ("--------------Stochastic action state  with  'Low' randomness ---------------- ")
 	env3 = MDPGridworldEnv(act_mode='stochastic',random_prob ='low')
-	C =mydp(env3)
+	C =myMC(env3)
 	C.monte_carlo_ES()
 	C.show_policy()
