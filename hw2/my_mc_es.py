@@ -156,22 +156,3 @@ if __name__ == "__main__":
 	C =mydp(env3)
 	C.monte_carlo_ES()
 	C.show_policy()
-	#A.value_iteration()
-	# print "  "
-	# print "Converged Value Iteration Results: at {} Iteration".format(A.value_iter_count)
-	# A.show_result()
-
-	# A.policy_iteration()
-	# print "Converged Policy Iteration Results: at {} Iteration".format(A.policy_iter_count)
-	# A.show_result()
-
-	
-
-	# B.value_iteration()
-	# print "  "
-	# print "Converged Value Iteration Results: at {} Iteration".format(B.value_iter_count)
-	# B.show_result()
-
-	# B.policy_iteration()
-	# print "Converged Policy Iteration Results: " #at {} Iteration".format(B.value_iter_count)
-	# B.show_result()
